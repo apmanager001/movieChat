@@ -19,7 +19,7 @@ const Header = () => {
                     <Link class="nav-link" to="/about">About</Link>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">Contact</a>
                     </li>
                     {/* <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
