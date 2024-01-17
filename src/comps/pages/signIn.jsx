@@ -9,9 +9,14 @@ const SignIn = () => {
     <>
     <Header />
     
-    <div className={styles.signInContainer}>Sign In
+    <div className={styles.signInContainer}>
     
-    
+      <div className={styles.formContainer}>
+        <form>
+          <h1>Create Account</h1>
+        </form>
+
+      </div>
     
     
     
