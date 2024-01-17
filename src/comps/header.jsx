@@ -17,13 +17,19 @@ const Header = () => {
                     <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
                     </li>
                     <li className="nav-item">
+                    <Link className="nav-link" to="/about">Movies</Link>
+                    </li>
+                    <li className="nav-item">
                     <Link className="nav-link" to="/about">About</Link>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="#">Contact</a>
+                    <Link to='/contact' className="nav-link" href="#">Contact</Link>
                     </li>
                     <li className="nav-item ">
                     <Link className="nav-link" to="/signIn">Sign In</Link>
+                    </li>
+                    <li className="nav-item ">
+                    <Link className="nav-link" to="/test">Test</Link>
                     </li>
                 </ul>
                 </div>

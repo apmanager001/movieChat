@@ -35,7 +35,7 @@ const Movies = () => {
         <div class="card" className={styles.cards} style={{width: "250px"}}>
           <img src="./posters/Tetris.jpg" class="card-img-top" alt="Tetris Movie Poster" />
           <div className="card-body">
-            <h5 className="card-title">Barbie</h5>
+            <h5 className="card-title">Tetris</h5>
             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="btn btn-primary">Take Me there</a>
           </div>
@@ -44,7 +44,7 @@ const Movies = () => {
         <div class="card" className={styles.cards} style={{width: "250px"}}>
           <img src="./posters/napolean.jpg" class="card-img-top" alt="Napolean Movie Poster" />
           <div className="card-body">
-            <h5 className="card-title">Oppenheimer</h5>
+            <h5 className="card-title">Napolean</h5>
             <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             <a href="#" class="btn btn-primary">Take Me there</a>
           </div>
