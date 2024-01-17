@@ -6,9 +6,10 @@
   opacity: .8;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
   position: absolute;
-  left: 45%;
+  left: 42%;
   top: 65%;
   font-size: 36px;
+  font-weight: 700;
   border-radius: 14px;
   }
   
@@ -45,4 +46,21 @@
   100% {
     transform: translateX(-300%); /* Adjust the percentage based on the number of items */
   }
+}
+
+@media screen and (max-width: 600px) {
+  .buttonSignUp {
+    cursor: pointer; 
+    border: 1px solid ; 
+    background-color: transparent;
+    opacity: .8;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 12%;
+    top: 65%;
+    font-size: 36px;
+    font-weight: 700;
+    border-radius: 14px;
+    }
+
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './css/poster.module.css';
+import {Link} from 'react-router-dom'
 
 const Poster = () => {
   return (
@@ -16,7 +17,7 @@ const Poster = () => {
             <div className={styles.coverItem} style={{ backgroundImage: 'url(./posters/lift.jpg)'}}></div>
             <div className={styles.coverItem} style={{ backgroundImage: 'url(./posters/nohardfeelings.jpg)'}}></div>
             <div className={styles.coverItem} style={{ backgroundImage: 'url(./posters/equalizer3.jpg)'}}></div>
-            <button type="button" className={styles.buttonSignUp}>Sign Up</button>
+            <Link to='/signIn'><button type="button" className={styles.buttonSignUp}>Sign Up / Sign In</button></Link>
               
             </div>
     </div>
