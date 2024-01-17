@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import Header from './header'
 import Footer from './footer'
 import styles from './css/test.css'
@@ -13,21 +13,35 @@ const Test = () => {
 
     const imageBase = 'https://image.tmdb.org/t/p/w500'
 
-    const main = document.getElementById('main')
+    
 
-    getMovies(popBase)
+    useEffect(() => {
+        const main = document.getElementById('main');
 
-    function getMovies(url) {
-        
-        fetch(url).then(res=>res.json()).then(data=>{
-            console.log(data.results)
-           showMovies(data.results);
-        })
+        if (main) {
+            getMovies(popBase);
+        } else {
+            console.error('Element with id "main" not found.');
+        }
+    }, []);
+
+    async function getMovies(url) {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data.results);
+            showMovies(data.results);
+        } catch (error) {
+            console.error('Error fetching movies:', error);
+        }
     }
 
     function showMovies(data) {
-        main.innerHTML = ``;
-        data.forEach(movie => {
+        const main = document.getElementById('main')
+        if (main) {
+            main.innerHTML = ``;
+            main.innerHTML = '';
+            data.forEach(movie => {
             const {title,poster_path, vote_average, overview} = movie;
             const movie1 = document.createElement('div');
             movie1.classList.add('movie');
@@ -47,6 +61,10 @@ const Test = () => {
             `
             main.appendChild(movie1);
         })
+    
+        } else {
+            console.error('Element with id "main" not found.');
+        }
     }
 
     function getColor(vote) {
@@ -75,7 +93,7 @@ const Test = () => {
     <div id="myNav" class="overlay">
 
         
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
       
         
         <div class="overlay-content" id="overlay-content"></div>
