@@ -1,4 +1,31 @@
 nav {
     color: black;
     background-color: #90EE90;
+    
+}
+.title {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-size: 38px;
+    align-content: center;
+}
+.links {
+    
+    padding-left: 30px;
+    font-size: 36px;
+}
+
+.signIn {
+    font-size: 32px;
+    background-color: red;
+    border-radius: 12px;
+}
+@media screen and (max-width: 600px) {
+    .links {
+        
+        padding-left: 0px;
+        font-size: 24px;
+    }
+
 }

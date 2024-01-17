@@ -1,10 +1,13 @@
 .moviesContainer {
     display: grid;
-    justify-content: space-between;
+    justify-content: space-evenly;
     grid-template-columns: auto auto auto;
-    margin: 100px ;
+    
 }
 
+.cards {
+    margin: 50px 0 50px 0;
+}
 
 
 @media screen and (max-width: 600px) {
