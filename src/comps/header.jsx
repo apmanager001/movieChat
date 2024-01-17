@@ -6,6 +6,7 @@ const Header = () => {
   return (
         <nav className="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div className="container-fluid" >
+                <img src="./logo.svg" class="card-img-top" alt="Logo" style={{width: "100px"}}/>
                 <h1><Link className="navbar-brand title" to="/">Movie Chat</Link></h1>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
