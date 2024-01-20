@@ -5,14 +5,16 @@ import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
 import styles from './css/header.module.css';
 
 const Header = () => {
-  const navRef = useRef(null);
+  
 
   useEffect(() => {
     const menuIcon = document.getElementById('toggleMenu');
+    const mobileLinksContainer = document.getElementsByClassName(styles.mobileLinks);
 
     const handleMenuToggle = () => {
-      if (navRef.current) {
-        navRef.current.style.display = navRef.current.style.display === 'block' ? 'none' : 'block';
+      // Iterate over the collection and toggle the class for each element
+      for (let i = 0; i < mobileLinksContainer.length; i++) {
+        mobileLinksContainer[i].classList.toggle(styles.show);
       }
       menuIcon.classList.toggle(styles.open);
     };
