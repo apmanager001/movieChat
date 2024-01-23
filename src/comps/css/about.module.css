@@ -28,7 +28,18 @@
 }
 .text {
     margin: 25px;
+    
 }
-.text span {
-    padding: 50px;
+
+@media only screen and (max-width: 600px){ 
+    .section {
+        border-radius: 0px;
+        margin: 0px;
+        width: 100%;
+    }
+    .image {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
 }
