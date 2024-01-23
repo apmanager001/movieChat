@@ -62,5 +62,18 @@
     font-weight: 700;
     border-radius: 14px;
     }
-
+    .coverItem {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      box-shadow: 2px 2px 4px #bbb;
+      
+      width: 350px;
+      max-height: 600px;
+      vertical-align: bottom;
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-size: cover;
+      animation: scroll 15s linear infinite;
+    }
 }
