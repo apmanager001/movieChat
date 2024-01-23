@@ -16,7 +16,7 @@ const Footer = () => {
       </div>
       <div className={styles.columnTwo}>
         <ul>
-          <li className={styles.footerItem}>Help</li>
+          <Link to='/help'><li className={styles.footerItem}>Help</li></Link>
           <Link to="/contact"><li className={styles.footerItem}>Contact</li></Link>
           <Link to="/about"><li className={styles.footerItem}>About</li></Link>
         </ul>
@@ -24,7 +24,7 @@ const Footer = () => {
       <div className={styles.columnThree}>
         <ul>
           <Link to='/signIn'><li className={styles.footerItem}>Account</li></Link>
-          <li className={styles.footerItem}>Movies</li>
+          <Link to='/movies'><li className={styles.footerItem}>Movies</li></Link>
           <li className={styles.footerItem}>Theater</li>
         </ul>
       </div>

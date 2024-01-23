@@ -7,6 +7,10 @@
     width: 100%;
     overflow:auto;
   }
+  .topnav a:hover {
+    color: lightgray;
+    text-shadow: 2px 2px #222;
+  }
   .topnav { 
       padding: 0 0 0 15px;
       
