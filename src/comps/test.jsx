@@ -83,11 +83,7 @@ const Test = () => {
     <>
     <Header />
     
-    <header>
-        <form  id="form">
-            <input type="text" placeholder="Search" id="search" class="search" />
-        </form>
-    </header>
+   
 
     <div id="tags"></div>
     <div id="myNav" class="overlay">
@@ -109,12 +105,7 @@ const Test = () => {
 
 
     </main>
-    <div class="pagination">
-        <div class="page" id="prev">Previous Page</div>
-        <div class="current" id="current">1</div>
-        <div class="page" id="next">Next Page</div>
-
-    </div>
+   
     
 
     <Footer />
