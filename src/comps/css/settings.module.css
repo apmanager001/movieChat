@@ -1,0 +1,16 @@
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+.membership {
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: 300;
+}

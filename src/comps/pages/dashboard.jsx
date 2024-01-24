@@ -5,6 +5,8 @@ import Header from '../header'
 import Footer from '../footer'
 import styles from '../css/dashboard.module.css'
 import Profile from './dashboardComps/profile'
+import Chats from './dashboardComps/chats'
+import Badges from './dashboardComps/badges'
 import Settings from './dashboardComps/settings'
 
 const Dashboard = () => {
@@ -20,16 +22,24 @@ const Dashboard = () => {
       <div className={styles.dashboardContainer}>
         <div className={styles.navBar}>
             <h3>Welcome ...!</h3>
-          <a href="#profile"  onClick={() => handleLinkClick('profile')}><FontAwesomeIcon icon={faUser} />
+          <a href="#profile"  onClick={() => handleLinkClick('profile')}><FontAwesomeIcon className={styles.icon} icon={faUser} />
             Profile
           </a>
-          <a href="#settings" onClick={() => handleLinkClick('settings')}><FontAwesomeIcon icon={faGear} />
+          <a href="#chats" onClick={() => handleLinkClick('chats')}>
+            Chats
+          </a>
+          <a href="#badges" onClick={() => handleLinkClick('badges')}>
+            Badges
+          </a>
+          <a href="#settings" onClick={() => handleLinkClick('settings')}><FontAwesomeIcon className={styles.icon} icon={faGear} />
             Settings
           </a>
         </div>
         <div className={styles.mainContent}>
           {selectedLink === 'profile' && <Profile />}
           {selectedLink === 'settings' && <Settings />}
+          {selectedLink === 'chats' && <Chats />}
+          {selectedLink === 'badges' && <Badges />}
         </div>
       </div>
 
