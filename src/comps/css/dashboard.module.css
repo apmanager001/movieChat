@@ -1,11 +1,11 @@
 .dashboardContainer {
     min-height: 700px;
-    margin: 0 200px 0 200px;
+    margin-left: 200px;
     display: flex;
     
 }
 .navBar {
-    margin: 100px 0 100px;
+    margin: 100px 0 100px 0;
     min-width: 200px;
     background-color: #f0f0f0;
     padding: 50px 20px 20px 20px;

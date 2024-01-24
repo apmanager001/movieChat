@@ -10,7 +10,7 @@ import Badges from './dashboardComps/badges'
 import Settings from './dashboardComps/settings'
 
 const Dashboard = () => {
-    const [selectedLink, setSelectedLink] = useState(null);
+    const [selectedLink, setSelectedLink] = useState('profile');
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
       <div className={styles.dashboardContainer}>
         <div className={styles.navBar}>
-            <h3>Welcome ...!</h3>
+            <h3>Welcome </h3> <h3>...!</h3>
           <a href="#profile"  onClick={() => handleLinkClick('profile')}><FontAwesomeIcon className={styles.icon} icon={faUser} />
             Profile
           </a>
