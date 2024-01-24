@@ -17,3 +17,43 @@
     border-radius: 15px 0 0 15px;
     padding: 5px 5px 5px 15px;
 }
+
+.profile img {
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 40px;
+}
+#fileInput {
+    background-color: lightgreen;
+    font-size:18px;
+    width: 250px;
+}
+@media only screen and (max-width: 600px){
+    h3 {
+        padding: 10px 5px 0 5px;
+    }
+    .profileContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin: 10px 10px 0 10px;
+    }
+    #fileInput {
+        margin-top: 15px;
+        background-color: lightgreen;
+        font-size:18px;
+        width: 250px;
+    }
+    #name, #email, #username,#password {
+        font-size: 22px;
+        width: 150px;
+        border-radius: 15px 0 0 15px;
+        padding: 5px 5px 5px 15px;
+    }
+    .accountButton {
+        font-size: 22px;
+        width: 100px;
+        background-color: lightgreen;
+        border-radius: 0 15px 15px 0;
+    }
+}
