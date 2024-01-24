@@ -37,6 +37,17 @@
     margin-right: 5px;
 }
 
-@media only screen and (min-width: 600px){
-
+@media only screen and (max-width: 600px){
+    .dashboardContainer {
+        min-height: 700px;
+        margin: 0;
+        display: flex;   
+    }
+    .navBar {
+        margin: 0;
+        min-width: 100px;
+        background-color: #f0f0f0;
+        padding: 0;
+        
+    }
 }
