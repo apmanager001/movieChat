@@ -25,6 +25,7 @@ const Header = () => {
                     <Link to="/" >Home</Link>
                     
                     <Link to="/movies" >Movies</Link>
+                    <Link to="/events" >Events</Link>
                     <Link to="/about" >About</Link>
                     <Link to="/contact" >Contact</Link>
                     <Link to="/test" >Test</Link>
@@ -42,6 +43,7 @@ const Header = () => {
                     <Link to="/signIn" onClick={toggleMenu}> <FontAwesomeIcon className='icon' icon={faUser} /> My Account</Link>
                     <Link to="/" onClick={toggleMenu}>Home</Link>
                     <Link to="/movies" onClick={toggleMenu}>Movies</Link>
+                    <Link to="/events" onClick={toggleMenu}>Events</Link>
                     <Link to="/about" onClick={toggleMenu}>About</Link>
                     <Link to="/contact" onClick={toggleMenu}>Contact</Link>
                     <Link to="/test" onClick={toggleMenu}>Test</Link>

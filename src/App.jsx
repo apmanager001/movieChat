@@ -3,6 +3,7 @@ import SignIn from './comps/pages/signIn'
 import Contact from './comps/pages/contact'
 import Test from './comps/test'
 import Movies from './comps/pages/movies'
+import EventsPage from './comps/pages/eventsPage'
 import Help from './comps/pages/help'
 import Dashboard from './comps/pages/dashboard'
 import { Route, Routes } from "react-router-dom"
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/events" element={<EventsPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/contact" element={<Contact />} />
