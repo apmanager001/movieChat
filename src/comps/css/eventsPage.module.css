@@ -1,4 +1,13 @@
 .eventsPageContainer {
-    height: 700px;
-    
+    background-image: url("./marquee.jpeg"); 
+    background-color: #000;
+    height: 1100px;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title{
+    font-size: 36px;
+    font-weight: 700;
+    padding: 400px 0 0 0;
 }
