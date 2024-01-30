@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faUser, faUsers, faMessage, faCertificate, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import profile from '../assets/profile.jpeg'
 import Header from '../header'
 import Footer from '../footer'
 import styles from '../css/dashboard.module.css'
@@ -22,8 +23,18 @@ const Dashboard = () => {
       <Header />
 
       <div className={styles.dashboardContainer}>
+        <div className={styles.topMain}>
+          <div className={styles.image}> 
+            <img src={profile} alt='Profile Image'/>
+          </div>
+          <div className={styles.info}>
+            <h2>Welcome ...!</h2>
+              <h3>Username:</h3>
+              <h3>DOB:</h3>
+          </div>
+            
+        </div>
         <div className={styles.navBar}>
-            <h3>Welcome </h3> <h3>...!</h3>
           <a href="#profile"  onClick={() => handleLinkClick('profile')}><FontAwesomeIcon className={styles.icon} icon={faUser} />
             Profile
           </a>
@@ -43,6 +54,7 @@ const Dashboard = () => {
             Settings
           </a>
         </div>
+        
         <div className={styles.mainContent}>
           {selectedLink === 'profile' && <Profile />}
           {selectedLink === 'friends' && <Friends />}
