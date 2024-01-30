@@ -11,11 +11,8 @@ const Profile = () => {
   };
 return (
     <div className={styles.profileContainer}>
-        <div className={styles.title}>
-           <h2> Your Profile</h2>
-        </div>
         <div className={`${styles.profile} ${styles.input}`}>
-            <img src={profile} alt='Profile Image'/>
+            
             <input
                 type="file"
                 id={styles.fileInput}
