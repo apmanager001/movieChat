@@ -25,18 +25,20 @@ return (
         </div>
         <div className={`${styles.name} ${styles.input}`}>
             <input type='text' id={styles.name} placeholder='Name' />
-            <input type="submit" value="Submit" className={styles.accountButton} />
+            
         </div>
         <div className={`${styles.email} ${styles.input}`}>
             <input type='text' id={styles.email} placeholder='Email' />
-            <input type="submit" value="Submit" className={styles.accountButton} />
+            
         </div>
         <div className={`${styles.username} ${styles.input}`}>
             <input type='text' id={styles.username} placeholder='Username' />
-            <input type="submit" value="Submit" className={styles.accountButton} />
+            
         </div>
-        <div className={`${styles.name} ${styles.input}`}>
+        <div className={`${styles.password} ${styles.input}`}>
             <input type='password' id={styles.password} placeholder='Password' />
+        </div>
+        <div className={`${styles.submitButton} ${styles.input}`}>
             <input type="submit" value="Submit" className={styles.accountButton} />
         </div>
         

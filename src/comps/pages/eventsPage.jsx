@@ -10,8 +10,13 @@ const EventsPages = () => {
     <Header />
     
         <div className={styles.eventsPageContainer}>
-            EventsPages
-        
+            <div className={styles.title} >
+            Coming Soon ...
+            </div>
+            <div className={styles.event1}>
+              
+            </div>
+
         </div>
 
     <Footer />
