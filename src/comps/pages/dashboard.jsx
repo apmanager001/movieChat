@@ -7,6 +7,7 @@ import styles from '../css/dashboard.module.css'
 import Profile from './dashboardComps/profile'
 import Friends from './dashboardComps/friends'
 import Chats from './dashboardComps/chats'
+import Events from './dashboardComps/events'
 import Badges from './dashboardComps/badges'
 import Settings from './dashboardComps/settings'
 
@@ -47,6 +48,7 @@ const Dashboard = () => {
           {selectedLink === 'friends' && <Friends />}
           {selectedLink === 'settings' && <Settings />}
           {selectedLink === 'chats' && <Chats />}
+          {selectedLink === 'events' && <Events />}
           {selectedLink === 'badges' && <Badges />}
         </div>
       </div>
