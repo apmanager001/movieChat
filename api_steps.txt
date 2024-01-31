@@ -1,0 +1,14 @@
+1.) setup api backend
+- Create data
+-- Declare model in models.py
+-- makemigration and migrate
+- Use admin panel to setup data
+- Setup serializer to turn data into json
+- Define action that url will implement when called in views.py
+- Define url that will do action in urls.py
+- Handle CORS issue via django CORS headers (which is setup in movieChat/settings.py)
+- Include api/urls.py inside movieChat/urls.py
+
+2.) call backend for data
+- Inside React page, setup axios instance
+- Map data received from instance call to React-generated elements
