@@ -32,7 +32,9 @@ const Dashboard = () => {
               <h3>Username:</h3>
               <h3>DOB:</h3>
           </div>
-            
+          <div className={styles.logout}>
+            <input href=''id={styles.logout} type='submit' value='Logout' />
+          </div>
         </div>
         <div className={styles.navBar}>
           <a href="#profile"  onClick={() => handleLinkClick('profile')}><FontAwesomeIcon className={styles.icon} icon={faUser} />
