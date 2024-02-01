@@ -19,34 +19,6 @@ const SignIn = () => {
 
       <div className={styles.signInContainer}>
         <div className={styles.container}>
-          <div className={`${styles.formContainer} ${isSignIn ? styles.signIn : styles.signUp}`}>
-            <form>
-              <h1>{isSignIn ? 'Sign In' : 'Create Account'}</h1>
-              <div className={styles.socialIcons}>
-                <Link to='/' className={styles.icon}><FontAwesomeIcon icon={faGoogle} /></Link>
-                <Link to='/' className={styles.icon}><FontAwesomeIcon icon={faFacebook} /></Link>
-                <Link to='/' className={styles.icon}><FontAwesomeIcon icon={faGithub} /></Link>
-                <Link to='/' className={styles.icon}><FontAwesomeIcon icon={faLinkedin} /></Link>
-              </div>
-              {isSignIn ? (
-                <>
-                  <span>or use your email and password</span>
-                  <input type="text" placeholder="Email" />
-                  <input type="password" placeholder="Password" />
-                  <Link to='/'>Forgot Your Password?</Link>
-                  <button>Sign In</button>
-                </>
-              ) : (
-                <>
-                  <span>or use your email to register</span>
-                  <input type="text" placeholder="Name" />
-                  <input type="text" placeholder="Email" />
-                  <input type="password" placeholder="Password" />
-                  <button>Sign Up</button>
-                </>
-              )}
-            </form>
-          </div>
           <div className={`${styles.formContainer} ${!isSignIn ? ' ' + styles.signIn : ''}`}>
             <form>
               <h1>{isSignIn ? 'Sign In' : 'Create Account'}</h1>
@@ -68,9 +40,13 @@ const SignIn = () => {
               ) : (
                 <>
                   <span>or use your email to register</span>
-                  <input type="text" placeholder="Name" />
+                  <input type="text" placeholder="First Name" />
+                  <input type="text" placeholder="Last Name" />
                   <input type="text" placeholder="Email" />
                   <input type="password" placeholder="Password" />
+                  <input type="password" placeholder="Repeat Password" />
+                  <label for='dob'>Date of Birth:</label>
+                  <input type="date" id='dob'></input>
                   <button>Sign Up</button>
                 </>
               )}
