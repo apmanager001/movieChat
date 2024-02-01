@@ -6,7 +6,7 @@
     height: 400px;
 }
 .event1{
-    background-image: url("./marquee2.jpeg"); 
+    background-image: url("/marquee2.jpeg"); 
     background-color: #000;
     background-position: center; 
     background-repeat: no-repeat;
@@ -23,7 +23,7 @@
     border-radius: 12px;
 }
 .event2{
-    background-image: url("./marquee2.jpeg"); 
+    background-image: url("/marquee2.jpeg"); 
     background-color: #000;
     background-position: center; 
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@
     border-radius: 12px;
 }
 .event3{
-    background-image: url("./marquee2.jpeg"); 
+    background-image: url("/marquee2.jpeg"); 
     background-color: #000;
     background-position: center; 
     background-repeat: no-repeat;
