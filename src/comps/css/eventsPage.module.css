@@ -1,5 +1,5 @@
 .eventsPageContainer {
-    background-image: url("./marquee.jpeg"); 
+    background-image: url("/marquee.jpeg"); 
     background-color: #000;
     height: 1100px;
     background-position: center; 
