@@ -2,7 +2,6 @@ import React from 'react'
 import Header from '../header'
 import Footer from '../footer'
 import styles from '../css/eventsPage.module.css'
-import marquee from '../assets/marquee.jpeg'
 
 const EventsPages = () => {
 
