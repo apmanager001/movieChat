@@ -1,31 +1,116 @@
-nav {
-    color: black;
-    background-color: #90EE90;
-    
-}
-.title {
-    display: flex;
-    padding: 0;
+
+  body {
     margin: 0;
-    font-size: 38px;
-    align-content: center;
-}
-.links {
+  }
+  .header {
+    background-color: #444;
+    width: 100%;
+    overflow:auto;
+  }
+  .topnav a:hover {
+    color: lightgray;
+    text-shadow: 2px 2px #222;
+  }
+  .topnav { 
+      padding: 0 0 0 15px;
+      
+      overflow: hidden;
+      text-align: left;
+      font-size: 28px;
+      font-weight: 600;
+      color: white;
+  }
+  .topnav img {
+    height: 80px;
+  }
+  .active {
+    background-color: #444;
+    color: white;
+    text-decoration: none;
+    padding-left: 15px;
+  }
     
-    padding-left: 30px;
-    font-size: 36px;
-}
-
-.signIn {
-    font-size: 32px;
-    background-color: red;
-    border-radius: 12px;
-}
-@media screen and (max-width: 600px) {
-    .links {
-        
-        padding-left: 0px;
-        font-size: 24px;
+    .hamburger #myLinks {
+      display: none;
     }
-
+  
+    .hamburger {
+      overflow: hidden;
+      background-color: #333;
+      font-size: 32px;
+      font-weight: 600;
+      color:white;
+      cursor: pointer;
+    }
+  
+    .hamburger a {
+      color: white;
+      padding: 5px;
+      text-decoration: none;
+      display: block;
+  
+  }
+    
+    .hamburger a.icon {
+      padding: 15px;
+      background: #666;
+      display: block;
+      position: absolute;
+      align-content: center;
+      right: 0;
+      top: 0;
+      
+    }
+    
+    .hamburger a:hover {
+      background-color: #666;
+      color: white;
+    }
+    .headerLinks {
+        display: none;
+    }
+    .icon{
+        padding-right: 15px;
+    }
+    .account {
+        display: none;
+    }
+@media only screen and (min-width: 600px){
+    
+    .hamburger{
+        display: none;
+    }
+    .active {
+        min-width: 200px;
+    }
+    .headerLinks{
+        display: flex;
+        justify-content: left;
+        width: 100%;
+        gap: 30px;
+        padding: 0 25px 0 100px; 
+    }
+    .headerLinks a{
+        text-decoration: none;
+        color: white;
+    }
+    .topnav {
+        display: flex;
+        
+        align-items: center;
+        text-align: center;
+        padding:0 50px 0 50px;
+    }
+    .topnav img {
+        height: 150px;
+    }
+    .account {
+        display: block;
+        width: 300px;
+    }
+    .account a{ 
+        
+        text-decoration: none;
+        color: white;
+    }
 }

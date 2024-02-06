@@ -6,33 +6,51 @@
     height: 400px;
 }
 .event1{
+    background-image: url("/marquee2.jpeg"); 
+    background-color: #000;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: 700;
+    height: 200px;
     grid-row: 2/3;
     grid-column: 2/3;
     background-color: white;
     border-radius: 12px;
 }
 .event2{
+    background-image: url("/marquee2.jpeg"); 
+    background-color: #000;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: 700;
+    height: 200px;
     grid-row: 2/3;
     grid-column:4/5;
     background-color: white;
     border-radius: 12px;
 }
 .event3{
+    background-image: url("/marquee2.jpeg"); 
+    background-color: #000;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: 700;
+    height: 200px;
     grid-row: 2/3;
     grid-column:6/7;
     background-color: white;
@@ -86,7 +104,7 @@
         grid-template-rows: .5fr 1fr .5fr 1fr .5fr 1fr .5fr 1fr .5fr 1fr .5fr 1fr .5fr;
         grid-template-columns: .5fr 1fr .5fr;
         background-color: black;
-        height: 500px;
+        height: 1200px;
     }
 
     .event1{

@@ -14,15 +14,18 @@ import {
 
 const SignIn = () => {
   const [isSignIn, setSignIn] = useState(true);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [dob, setDob] = useState('');
 
   const handleSignIn = async (event) => {
     event.preventDefault();
-    console.log('Trying post request');
     try {
       const response = await api.post('signIn', { email, password });
+      // Currently only logs HTTP status, in future should handle return of token (by saving it to local browser storage)
+      // that will be used to authenticate GET requests for user info
       console.log('Response status from signIn: ', response.status);
     } catch (error) {
       console.log('Caught error\n', error.response);
@@ -31,9 +34,15 @@ const SignIn = () => {
 
   const handleCreateAcct = async (event) => {
     event.preventDefault();
-
     try {
-      const response = await api.post('createAcct', { name, email, password });
+      const response = await api.post('createAcct', {
+        email,
+        password,
+        ...(firstName && { firstName }), // Only includes if firstName is truthy
+        ...(lastName && { lastName }), // Only includes if lastName is truthy
+      });
+      // Currently only logs HTTP status, in future should handle return of token (by saving it to local browser storage)
+      // that will be used to authenticate GET requests for user info
       console.log('Response status from createAcct: ', response.status);
     } catch (error) {
       console.log('Caught error\n', error.response);
@@ -50,83 +59,6 @@ const SignIn = () => {
 
       <div className={styles.signInContainer}>
         <div className={styles.container}>
-          <div
-            className={`${styles.formContainer} ${
-              isSignIn ? styles.signIn : styles.signUp
-            }`}
-          >
-            <form onSubmit={isSignIn ? handleSignIn : handleCreateAcct}>
-              <h1>{isSignIn ? 'Sign In' : 'Create Account'}</h1>
-              <div className={styles.socialIcons}>
-                <Link
-                  to='/'
-                  className={styles.icon}
-                >
-                  <FontAwesomeIcon icon={faGoogle} />
-                </Link>
-                <Link
-                  to='/'
-                  className={styles.icon}
-                >
-                  <FontAwesomeIcon icon={faFacebook} />
-                </Link>
-                <Link
-                  to='/'
-                  className={styles.icon}
-                >
-                  <FontAwesomeIcon icon={faGithub} />
-                </Link>
-                <Link
-                  to='/'
-                  className={styles.icon}
-                >
-                  <FontAwesomeIcon icon={faLinkedin} />
-                </Link>
-              </div>
-              {isSignIn ? (
-                <>
-                  <span>or use your email and password</span>
-                  <input
-                    type='text'
-                    placeholder='Email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <input
-                    type='password'
-                    placeholder='Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <Link to='/'>Forgot Your Password?</Link>
-                  <button type='submit'>Sign In</button>
-                </>
-              ) : (
-                <>
-                  <span>or use your email to register</span>
-                  <input
-                    type='text'
-                    placeholder='Name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <input
-                    type='text'
-                    placeholder='Email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <input
-                    type='password'
-                    placeholder='Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button type='submit'>Sign Up</button>
-                </>
-              )}
-            </form>
-          </div>
           <div
             className={`${styles.formContainer} ${
               !isSignIn ? ' ' + styles.signIn : ''
@@ -185,21 +117,40 @@ const SignIn = () => {
                   <span>or use your email to register</span>
                   <input
                     type='text'
-                    placeholder='Name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    placeholder='First Name'
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <input
+                    type='text'
+                    placeholder='Last Name'
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                   <input
                     type='text'
                     placeholder='Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                   <input
-                    type='text'
+                    type='password'
                     placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <input
+                    type='password'
+                    placeholder='Repeat Password'
+                  />
+                  <label>Date of Birth:</label>
+                  <input
+                    type='date'
+                    id='dob'
+                    value={dob}
+                    onChange={(e) => setDob(e.target.value)}
                   />
                   <button>Sign Up</button>
                 </>

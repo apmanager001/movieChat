@@ -2,7 +2,7 @@
     display: grid;
     justify-content: space-evenly;
     grid-template-columns: auto auto auto;
-    
+    background-color: white;
 }
 
 .cards {
@@ -10,7 +10,7 @@
 }
 
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .moviesContainer {
         display: grid;
         justify-content: center;
