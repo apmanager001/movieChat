@@ -45,7 +45,7 @@ const SignIn = () => {
                   <input type="text" placeholder="Email" />
                   <input type="password" placeholder="Password" />
                   <input type="password" placeholder="Repeat Password" />
-                  <label for='dob'>Date of Birth:</label>
+                  <label for='dob' >Date of Birth:</label>
                   <input type="date" id='dob'></input>
                   <button>Sign Up</button>
                 </>
