@@ -19,7 +19,7 @@ def sign_in_view(request):
     
     # Attempt to authenticate user
     user = authenticate(request, username=email, password=password)
-
+    
     # If authenticated, log user in
     if user is not None:
         login(request, user)
@@ -27,6 +27,7 @@ def sign_in_view(request):
     
     # If not authenticated, return invalid response
     else:
+        print('User: ', user)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -37,19 +38,23 @@ def create_account_view(request):
     name = request.data.get('name')
     email = request.data.get('email')
     password = request.data.get('password')
+    first_name = request.data.get('firstName', None)
+    last_name = request.data.get('lastName', None)
 
     # Hash password for database insertion
-    hashed_password = make_password(password, salt=None, hasher='Argon2')
+    hashed_password = make_password(password, salt=None, hasher='default')
 
     # Create a new user in database
-    new_user = User.objects.create_user(username=email, email=email, password=hashed_password, first_name=name)
+    new_user = User.objects.create_user(username=email, email=email, password=hashed_password, first_name=first_name, last_name=last_name)
 
     # Returns valid if account is successfully created
     if new_user != None:
-        return Response(new_user, status=status.HTTP_201_OK)
+        serializer = UserSerializer(new_user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     # Returns invalid if account is not successfully created
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['POST'])

@@ -2,6 +2,19 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils.formats import date_format
 
+# MODELS:
+
+# UserManager .create_user .create_superuser
+# User
+# Movie
+# Badge
+# Friendship
+# UserMovieWatched
+# Review
+# Staff
+# Role
+# Event
+# RSVP
 
 
 class UserManager(BaseUserManager):
