@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [dob, setDob] = useState("Loading...");
   const [profileImage, setProfileImage] = useState(null);
 
-  const api = ""
+  const api = import.meta.env.backend_url;
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
