@@ -26,7 +26,8 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    fetch({ api })
+   
+      fetch({ api }/api)
       .then((response) => response.json())
       .then((data) => {
         setName(data.name);
@@ -34,6 +35,8 @@ const Dashboard = () => {
         setUsername(data.username);
         setProfileImage(data.profileImage)
       });
+    
+  
   }, []);
 
 

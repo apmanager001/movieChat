@@ -3,7 +3,7 @@
     margin: 0;
   }
   .header {
-    background-color: #444;
+    background-color: #39481f;
     width: 100%;
     overflow:auto;
   }
@@ -24,7 +24,7 @@
     height: 80px;
   }
   .active {
-    background-color: #444;
+    background-color: #39481f;
     color: white;
     text-decoration: none;
     padding-left: 15px;
@@ -36,7 +36,7 @@
   
     .hamburger {
       overflow: hidden;
-      background-color: #333;
+      background-color: #7fa046;
       font-size: 32px;
       font-weight: 600;
       color:white;
@@ -53,7 +53,7 @@
     
     .hamburger a.icon {
       padding: 15px;
-      background: #666;
+      background: #7fa046;
       display: block;
       position: absolute;
       align-content: center;
@@ -63,7 +63,7 @@
     }
     
     .hamburger a:hover {
-      background-color: #666;
+      background-color: #7fa046;
       color: white;
     }
     .headerLinks {
