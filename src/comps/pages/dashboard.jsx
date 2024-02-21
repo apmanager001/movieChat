@@ -19,14 +19,15 @@ const Dashboard = () => {
   const [dob, setDob] = useState("Loading...");
   const [profileImage, setProfileImage] = useState(null);
 
-  const api = ""
+  const api = import.meta.env.backend_url;
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
   }
 
   useEffect(() => {
-    fetch({ api })
+   
+      fetch({ api }/api)
       .then((response) => response.json())
       .then((data) => {
         setName(data.name);
@@ -34,6 +35,8 @@ const Dashboard = () => {
         setUsername(data.username);
         setProfileImage(data.profileImage)
       });
+    
+  
   }, []);
 
 

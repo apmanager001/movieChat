@@ -32,6 +32,10 @@ body {
     font-size:18px;
     width: 250px;
 }
+
+
+
+
 @media only screen and (max-width: 600px){
     h3 {
         padding: 10px 5px 0 5px;
