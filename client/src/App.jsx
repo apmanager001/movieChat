@@ -18,7 +18,7 @@ function App() {
   return (
     <>
     <div className={styles.main}>
-      <div className={styles.sidebar}>
+      <div className={styles.sidebars} >
         <Sidebars />
       </div>
       <div className={styles.mainContent}>
