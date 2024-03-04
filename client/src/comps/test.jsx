@@ -1,6 +1,5 @@
 import React, {useEffect}from 'react'
-import Header from './header'
-import Footer from './footer'
+
 import styles from './css/test.css'
 
 const Test = () => {
@@ -81,7 +80,7 @@ const Test = () => {
 
   return (
     <>
-    <Header />
+
     
    
 
@@ -106,9 +105,6 @@ const Test = () => {
 
     </main>
    
-    
-
-    <Footer />
     </>
     
   )

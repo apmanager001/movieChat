@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/signIn.module.css';
-import Header from '../header';
-import Footer from '../footer';
+
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -15,7 +14,7 @@ const SignIn = () => {
 
   return (
     <>
-      <Header />
+      
 
       <div className={styles.signInContainer}>
         <div className={styles.container}>
@@ -67,7 +66,7 @@ const SignIn = () => {
         </div>
       </div>
 
-      <Footer />
+      
     </>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react'
-import Header from '../header'
-import Footer from '../footer'
+
 import styles from '../css/contact.module.css'
 
 const Contact = () => {
@@ -10,7 +9,7 @@ const Contact = () => {
   return (
     <>
     
-    <Header />
+    
 
     <div className={styles.contactContainer}>
       <div className={styles.form}>
@@ -29,7 +28,7 @@ const Contact = () => {
       </div>
     </div>
     
-    <Footer />
+    
     </>
   )
 }

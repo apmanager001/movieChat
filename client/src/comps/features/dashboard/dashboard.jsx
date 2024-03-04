@@ -1,19 +1,25 @@
-import React, {useState, useEffect} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faUser, faUsers, faMessage, faCertificate, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import profile from '../assets/profile.jpeg'
-import Header from '../header'
-import Footer from '../footer'
-import styles from '../css/dashboard.module.css'
-import Profile from './dashboardComps/profile'
-import Friends from './dashboardComps/friends'
-import Chats from './dashboardComps/chats'
-import Events from './dashboardComps/events'
-import Badges from './dashboardComps/badges'
-import Settings from './dashboardComps/settings'
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGear,
+  faUser,
+  faUsers,
+  faMessage,
+  faCertificate,
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
+import profile from "../../assets/profile.jpeg";
+
+import styles from "./css/dashboard.module.css";
+import Profile from "./profile";
+import Friends from "./friends";
+import Chats from "./chats";
+import Events from "./events";
+import Badges from "./badges";
+import Settings from "./settings";
 
 const Dashboard = () => {
-  const [selectedLink, setSelectedLink] = useState('profile');
+  const [selectedLink, setSelectedLink] = useState("profile");
   const [name, setName] = useState("Loading...");
   const [username, setUsername] = useState("Loading...");
   const [dob, setDob] = useState("Loading...");
@@ -23,26 +29,22 @@ const Dashboard = () => {
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
-  }
+  };
 
   useEffect(() => {
-   
-      fetch({ api }/api)
+    fetch({ api } / api)
       .then((response) => response.json())
       .then((data) => {
         setName(data.name);
         setDob(date.dob);
         setUsername(data.username);
-        setProfileImage(data.profileImage)
+        setProfileImage(data.profileImage);
       });
-    
-  
   }, []);
-
 
   return (
     <>
-      <Header />
+  
 
       <div className={styles.dashboardContainer}>
         <div className={styles.topMain}>
@@ -98,9 +100,9 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <Footer />
+    
     </>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

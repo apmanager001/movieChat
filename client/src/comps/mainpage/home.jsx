@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import Header from '../header'
-import Poster from '../poster'
-import Events from '../events'
-import Movies from '../movies'
-import Footer from '../footer'
+
+import Poster from './poster'
+import Events from './events'
+import Movies from './movies'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
-import styles from '../css/home.module.css'
+import styles from './css/home.module.css'
 
 
 const Home = () => {
@@ -52,11 +52,11 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <Header />
+          
           <Poster />
           <Events />
           <Movies />
-          <Footer />
+         
         </>
       )}
     </>

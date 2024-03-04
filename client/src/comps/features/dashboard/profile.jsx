@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import profile from '../../assets/profile.jpeg'
-import styles from '../../css/profile.module.css'
+import styles from './css/profile.module.css'
 
 const Profile = () => {
 

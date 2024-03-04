@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+}
+
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  font-weight: 700;
+  left: 0;
+  top: 0;
+  width: 250px;
+  background-color: olive;
+  direction: ltr;
+}
+.menu {
+  padding-top: 100px;
+}
+.mainIcon {
+  color: #7393b3;
+}
+
+.mainContent {
+  margin-left: 250px;
+  overflow-y: scroll;
+  min-width: calc(100% - 200px);
+}
+
+.menuItem:hover {
+  background-color: #f3f6ea;
+}

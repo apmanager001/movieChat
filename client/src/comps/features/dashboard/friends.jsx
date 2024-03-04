@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../css/friends.module.css'
+import styles from './css/friends.module.css'
 
 const Friends = () => {
 

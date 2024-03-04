@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import styles from '../../css/settings.module.css'
+import styles from './css/settings.module.css'
 
 const Settings = () => {
   const [memberSince, setMemberSince] = useState("Loading...");
