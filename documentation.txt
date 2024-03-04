@@ -1,0 +1,64 @@
+API Documentation
+Base URL
+
+All endpoints are prefixed with /api/. For example, to access the users view, you would send a request to /api/<user_id>.
+Endpoints
+
+    Test Endpoint
+        URL: /api/
+        Method: GET
+        Description: Retrieves a list of all users.
+        Permissions: None required.
+        Response: Returns a list of users with fields: id, username, email, first_name, last_name, badges, friends, and created_at.
+
+    Sign In
+        URL: /api/signin
+        Method: POST
+        Description: Authenticates a user.
+        Data Required: username, password.
+        Permissions: None required.
+        Response: On success, returns a message indicating the user has been successfully logged in. On failure, returns an error message.
+
+    Sign Up
+        URL: /api/signup
+        Method: POST
+        Description: Registers a new user.
+        Data Required: User information including username, password, and optionally email, first_name, last_name.
+        Permissions: None required.
+        Response: On success, returns a message indicating the user has been successfully registered. On failure, returns an error message.
+
+    Sign Out
+        URL: /api/signout
+        Method: POST
+        Description: Logs out an authenticated user.
+        Permissions: User must be authenticated.
+        Response: Returns a message indicating the user has been successfully logged out.
+
+    User Details
+        URL: /api/<int:user_id>
+        Methods:
+            GET: Retrieves details of a specific user.
+            PUT: Updates details of a specific user. Requires updated user information in the request body.
+            DELETE: Deletes a specific user.
+        Permissions: User must be authenticated, and typically, the user must have permission to update or delete the specified user record (often, users can only update or delete their own records, unless they have admin privileges).
+        Data Required for PUT: Updated user information including username, email, first_name, last_name, etc.
+        Response:
+            For GET: Returns details of the user with fields: id, username, email, first_name, last_name, badges, friends, and created_at.
+            For PUT: Returns a message indicating the user has been successfully updated. The actual response may also include the updated user data.
+            For DELETE: Returns a message indicating the user has been successfully deleted.
+
+    User Badges
+        URL: /api/<int:user_id>/badges
+        Method: GET
+        Description: Retrieves badges associated with a specific user.
+        Permissions: None required.
+        Response: Returns a list of badges for the user. Each badge includes all its fields.
+
+    User Friendship
+        URL: /api/<int:user_id>/friendship
+        Methods: GET, POST, DELETE
+        Description: Manages friendships for a specific user. GET retrieves friends, POST creates a new friendship, and DELETE removes a friendship.
+        Permissions: User must be authenticated.
+        Data Required for POST: user_b_id (the ID of the user to become friends with).
+        Query Parameters for DELETE: user_b_id (the ID of the friend to remove).
+        Response: For GET, returns a list of friends. For POST, returns a message indicating a new friendship has been created. For DELETE, returns a message indicating the friendship has been successfully deleted.

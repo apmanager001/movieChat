@@ -1,69 +1,186 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from .serializers import UserSerializer
+from .serializers import UserSerializer, BadgeSerializer, FriendshipSerializer
+from .models import Badge, Friendship
 
+
+@api_view(['GET'])
+def test_view(request):
+    User = get_user_model()
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
 def sign_in_view(request):
     # Get data from request object
-    email = request.data.get('email')
+    username = request.data.get('username')
     password = request.data.get('password')
     
     # Attempt to authenticate user
-    user = authenticate(request, username=email, password=password)
+    user = authenticate(request, username=username, password=password)
     
     # If authenticated, log user in
     if user is not None:
         login(request, user)
-        return Response(status=status.HTTP_200_OK)
+        return Response({'message': 'Successfully logged in.'}, status=status.HTTP_200_OK)
     
     # If not authenticated, return invalid response
     else:
-        print('User: ', user)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Sign in unsuccessful.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
 @api_view(['POST'])
-def create_account_view(request):
+def sign_up_view(request):
     # Get data from request object
-    name = request.data.get('name')
+    username = request.data.get('username')
     email = request.data.get('email')
     password = request.data.get('password')
     first_name = request.data.get('firstName', None)
     last_name = request.data.get('lastName', None)
 
-    # Hash password for database insertion
-    hashed_password = make_password(password, salt=None, hasher='default')
-
     # Create a new user in database
-    new_user = User.objects.create_user(username=email, email=email, password=hashed_password, first_name=first_name, last_name=last_name)
-
-    # Returns valid if account is successfully created
-    if new_user != None:
-        serializer = UserSerializer(new_user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    # Returns invalid if account is not successfully created
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    User = get_user_model()
+    try:
+        new_user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
+    except Exception as e:
+        # Returns invalid if account is not successfully created
+        return Response({'message': 'Sign up unsuccessful. ' + str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Returns valid if account successfully creates
+    serializer = UserSerializer(new_user)
+    return Response(serializer.data, status=status.HTTP_201_CREATED) 
 
 
 
 @api_view(['POST'])
-def update_account_view(request):
-    # Get data from request object
-    # If updating password, hash raw password for database insertion
-    if password != None:
-        hashed_password = make_password(password, salt=None, hasher='Argon2')
-    # Update database
-    # Returns valid if updated successfully
-    # Returns invalid if updated unsuccessfully
-    pass
+@permission_classes([IsAuthenticated])
+def sign_out_view(request):
+    logout(request)
+    return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def user_view(request, user_id):
+
+    User = get_user_model()
+    user = get_object_or_404(User, pk=user_id)
+    
+    # Retrieve user information
+    if request.method == 'GET':
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    # Update user information
+    elif request.method == 'PUT':
+        serializer = UserSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Delete user
+    elif request.method == 'DELETE':
+        user.delete()
+        return Response({'message': 'User {} successfully deleted'.format(user_id)}, status=status.HTTP_204_NO_CONTENT)
+
+    return Response({'error': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def badges_view(request, user_id):
+
+    User = get_user_model()
+    user = get_object_or_404(User, pk=user_id)
+
+    # Retrieve all badges information for user
+    if request.method == 'GET':
+        badges = user.badges.all()
+        serializer = BadgeSerializer(badges, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Add new badge to user account
+    if request.method == 'POST':
+        # Get badge from JSON data
+        badge_title = request.data.get('badge_title')
+        try:
+            badge = Badge.objects.get(title=badge_title)
+        except Badge.DoesNotExist:
+            return Response({"error": "Unknown badge title"}, status=status.HTTP_404_NOT_FOUND)
+        user.badges.add(badge)
+        return Response({"message": "Successfully added badge to user"}, status=status.HTTP_201_CREATED)
+
+    elif request.method == 'DELETE':
+        # Get badge from query parameters
+        badge_title = request.query_params.get('badge_title')
+        try:
+            badge = Badge.objects.get(title=badge_title)
+        except Badge.DoesNotExist:
+            return Response({"error": "Unknown badge title"}, status=status.HTTP_404_NOT_FOUND)
+        user.badges.remove(badge)
+        return Response({"message": "Successfully removed badge from user"}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def friendship_view(request, user_id):
+
+    User = get_user_model()
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found using user_id parameter'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == "GET":
+        friends = user.get_friends()
+        serializer = UserSerializer(friends, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    if request.method == "POST":
+        user_b_id = request.data.get('user_b_id')
+        if user_b_id == None:
+            return Response({'error': 'Missing user_b parameter'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user_b = User.objects.get(pk=user_b_id)
+            new_friendship = Friendship(user_a=user, user_b=user_b)
+            new_friendship.save()
+            return Response({'message': 'Friendship created'}, status=status.HTTP_201_CREATED)
+        except User.DoesNotExist:
+            return Response({'error': 'User specified in user_b parameter not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': 'Friendship creation unsuccessful:  ' + str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == "DELETE":
+        user_b_id = request.query_params.get('user_b_id')
+        if user_b_id == None:
+            return Response({'error': 'Missing user_b parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_b = User.objects.get(pk=user_b_id)
+            friendship = Friendship.objects.get(user_a=user, user_b=user_b)
+            friendship.delete()
+        except User.DoesNotExist:
+            return Response({'error': 'User specified in user_b parameter not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Friendship.DoesNotExist:
+            return Response({'error': 'Friendship does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': 'Friendship deletion unsuccessful:  ' + str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Successfully deleted friendship'}, status=status.HTTP_204_NO_CONTENT)

@@ -57,18 +57,49 @@ class UserManager(BaseUserManager):
 
 
 
+class Badge(models.Model):
+  title = models.CharField(max_length=255, unique=True)
+  requirement = models.TextField()
+  pic_src = models.URLField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+    return self.title
+
+
+
 class User(AbstractBaseUser):
   first_name = models.CharField(max_length=255, null=True)
   last_name = models.CharField(max_length=255, null=True)
   username = models.CharField(max_length=25, unique=True)
   email = models.EmailField(unique=True)
+  friends = models.ManyToManyField('self', through='Friendship', symmetrical=True)
+  badges = models.ManyToManyField(Badge, through='UserBadge', related_name='users')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
   objects = UserManager()
+
+  USERNAME_FIELD = 'username'
+  REQUIRED_FIELDS = ['email']
   
   def __str__(self):
       return self.username
+
+  def get_friends(self):
+      # Friends where the user is the initiator or receiver
+      friendships = Friendship.objects.filter(models.Q(user_a=self) | models.Q(user_b=self))
+
+      # Extracting user IDs from friendships, excluding the current user's ID
+      friend_ids = set()
+      for friendship in friendships:
+          friend_ids.add(friendship.user_a_id if friendship.user_a_id != self.id else friendship.user_b_id)
+
+      # Retrieve User instances for the collected friend IDs
+      friends = User.objects.filter(id__in=friend_ids)
+
+      return friends
 
 
 
@@ -84,26 +115,38 @@ class Movie(models.Model):
 
 
 
-class Badge(models.Model):
-  title = models.CharField(max_length=255)
-  requirement = models.TextField()
-  pic_src = models.URLField()
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
+class UserBadge(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_badges')
+    badge = models.ForeignKey(Badge, on_delete=models.CASCADE, related_name='badge_users')
+    awarded_at = models.DateTimeField(auto_now_add=True)  
 
-  def __str__(self):
-    return self.title
+    class Meta:
+        unique_together = ('user', 'badge')
+        verbose_name = 'User Badge'
+        verbose_name_plural = 'User Badges'
+
+    def __str__(self):
+        return f"{self.user.username} awarded {self.badge.title} on {self.awarded_at}"
 
 
 
 class Friendship(models.Model):
-  user_a = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendships_initiated')
-  user_b = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendships_received')
+  user_a = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendships_as_a')
+  user_b = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendships_as_b')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
+  class Meta:
+    unique_together = ('user_a', 'user_b')
+
   def __str__(self):
     return f"Friendship of {self.user_a} and {self.user_b}"
+
+  def save(self, *args, **kwargs):
+    # Ensure user_a always has the lower ID to eliminate directionality
+    if self.user_a_id > self.user_b_id:
+        self.user_a, self.user_b = self.user_b, self.user_a
+    super(Friendship, self).save(*args, **kwargs)
 
 
 
