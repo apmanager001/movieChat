@@ -17,11 +17,8 @@ import "./App.css";
 function App() {
   return (
     <>
-    <div className={styles.main}>
-      <div className={styles.sidebars} >
-        <Sidebars />
-      </div>
-      <div className={styles.mainContent}>
+    <Sidebars />
+    <div className={styles.routes}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
@@ -33,9 +30,9 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+       
         <Footer />
-      </div>
-    </div>
+     </div>
     
     </>
   );

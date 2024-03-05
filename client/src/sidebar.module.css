@@ -1,27 +1,26 @@
-.main {
+/* .main {
   display: flex;
-}
+} */
 .arrowIcon {
   padding-top: 50px;
-  color: black;
+  color: white;
   cursor: pointer;
 }
 .title {
   padding-top: 25px;
-  color: black;
+  color: white;
 }
-.sidebars {
-  height: 100vh;
-  font-weight: 700;
-  background-color: transparent;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+.routes {
+  margin-left: 80px;
 }
 .sidebar {
-  background-color: black;
+  color: white;
+  font-weight: 700;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  color: white;
+}
+.menuItem :hover {
+  background-color: red;
 }
 .menu {
   padding-top: 50px;
@@ -36,9 +35,6 @@
 }
 .subMenuItem {
   background-color: black;
-}
-.subMenuItem :hover {
-  background-color: gray;
 }
 
 
