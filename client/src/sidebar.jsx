@@ -62,7 +62,7 @@ const Sidebars = () => {
         <p>Movie Chat</p>
       </div>
 
-      <Menu className={styles.menuItem} className={styles.menu}>
+      <Menu className={styles.menu}>
         <MenuItem
           icon={<FontAwesomeIcon className={styles.mainIcon} icon={faHome} />}
           component={<Link to="/" />}

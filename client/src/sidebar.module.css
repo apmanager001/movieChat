@@ -20,6 +20,7 @@
   border-bottom-right-radius: 15px;
 }
 .menuItem :hover {
+
   background-color: red;
 }
 .menu {
