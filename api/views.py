@@ -4,11 +4,11 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from .serializers import UserSerializer, BadgeSerializer, FriendshipSerializer
-from .models import Badge, Friendship
+from .serializers import UserSerializer, BadgeSerializer, FriendshipSerializer, MovieSerializer, EventSerializer
+from .models import Badge, Friendship, Movie, Event
 
 
 @api_view(['GET'])
@@ -103,7 +103,7 @@ def user_view(request, user_id):
 @api_view(['GET', 'POST', 'DELETE'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
-def badges_view(request, user_id):
+def badge_view(request, user_id):
 
     User = get_user_model()
     user = get_object_or_404(User, pk=user_id)
@@ -184,3 +184,92 @@ def friendship_view(request, user_id):
         except Exception as e:
             return Response({'error': 'Friendship deletion unsuccessful:  ' + str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response({'message': 'Successfully deleted friendship'}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def movie_list_create_view(request):
+    if request.method == 'GET':
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = MovieSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def movie_detail_view(request, movie_id):
+    try:
+        movie = Movie.objects.get(pk=movie_id)
+    except Movie.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = MovieSerializer(movie)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = MovieSerializer(movie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        movie.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def event_list_create_view(request):
+    """
+    List all events or create a new event.
+    """
+    if request.method == 'GET':
+        events = Event.objects.all()
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)  # Automatically set the user to the current user
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def event_detail_view(request, event_id):
+    """
+    Retrieve, update, or delete an event.
+    """
+    event = get_object_or_404(Event, pk=event_id)
+
+    if request.method == 'GET':
+        serializer = EventSerializer(event)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        if request.user != event.user and not request.user.is_staff:
+            return Response({'detail': 'Not authorized to update this event'}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = EventSerializer(event, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        if request.user != event.user and not request.user.is_staff:
+            return Response({'detail': 'Not authorized to delete this event'}, status=status.HTTP_403_FORBIDDEN)
+
+        event.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

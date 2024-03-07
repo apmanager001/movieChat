@@ -222,7 +222,7 @@ class Event(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
   admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-  occuring_when = models.DateTimeField()
+  occurring_when = models.DateTimeField()
   RSVP_limit = models.IntegerField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
