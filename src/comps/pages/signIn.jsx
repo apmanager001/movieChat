@@ -3,7 +3,7 @@ import api from '../api';
 import styles from '../css/signIn.module.css';
 import Header from '../header';
 import Footer from '../footer';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebook,
@@ -13,6 +13,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [isSignIn, setSignIn] = useState(true);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -26,6 +27,11 @@ const SignIn = () => {
     try {
       const response = await api.post('signin/', { email, password });
       console.log('Response status from signin: ', response.status);
+      if (response.status === 200) {
+        navigate('/dashboard');
+      } else if (response.status === 400) {
+        navigate('');
+      }
     } catch (error) {
       console.log('Caught error\n', error.response);
     }
