@@ -22,11 +22,11 @@ def test_view(request):
 @api_view(['POST'])
 def sign_in_view(request):
     # Get data from request object
-    username = request.data.get('username')
+    email = request.data.get('email')
     password = request.data.get('password')
     
     # Attempt to authenticate user
-    user = authenticate(request, username=username, password=password)
+    user = authenticate(request, email=email, password=password)
     
     # If authenticated, log user in
     if user is not None:
