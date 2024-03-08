@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!u)1jlw7g91zc1f@8x^y6-3a%*0zpcoj24^k%hkv1v+5&a4@^*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://movie-chat-api-fc8e0e1d6aca.herokuapp.com/']
 
 
 # Application definition
