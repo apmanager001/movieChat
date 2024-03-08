@@ -15,7 +15,7 @@ Endpoints
         URL: /api/signin
         Method: POST
         Description: Authenticates a user.
-        Data Required: username, password.
+        Data Required: email, password.
         Permissions: None required.
         Response: On success, returns a message indicating the user has been successfully logged in. On failure, returns an error message.
 
