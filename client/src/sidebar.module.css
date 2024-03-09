@@ -9,12 +9,22 @@
 .title {
   padding-top: 25px;
   color: white;
+  
 }
-.routes {
+.title a{
+  color: white;
+  text-decoration: none;
+}
+
+.notCollapsed {
+  margin-left: 250px;
+}
+.collapsed {
   margin-left: 80px;
 }
 .sidebar {
   color: white;
+  position:relative;
   font-weight: 700;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;

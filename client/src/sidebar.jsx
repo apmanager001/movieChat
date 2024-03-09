@@ -18,19 +18,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./sidebar.module.css";
 
-const Sidebars = () => {
-  const [toggled, setToggled] = useState(true);
-  const [collapsed, setCollapsed] = useState(true);
+const Sidebars = ({ collapsed, toggleCollapsed }) => {
+  //const [toggled, setToggled] = useState(true);
+  //const [collapsed, setCollapsed] = useState(true);
+  //const [default, setDefault] = useState(true)
 
   return (
     <Sidebar
       backgroundColor="#000"
       className={styles.sidebar}
       collapsed={collapsed}
-      //collapsedWidth="80px"
-      toggled={toggled}
-      onBackdropClick={() => setToggled(false)}
-      breakPoint="all"
+      defaultCollapsed={true}
+      collapsedWidth="80px"
+      //toggled={toggled}
+      //onBackdropClick={() => setToggled(false)}
+      //breakPoint="all"
       style={{
         border: "none",
         borderWidth: 0,
@@ -48,18 +50,19 @@ const Sidebars = () => {
         <FontAwesomeIcon
           className={styles.arrowIcon}
           icon={faArrowRight}
-          onClick={() => setCollapsed(false)}
+          onClick={() => toggleCollapsed(!collapsed)}
         />
       ) : (
         <FontAwesomeIcon
           className={styles.arrowIcon}
           icon={faArrowLeft}
-          onClick={() => setCollapsed(true)}
+          onClick={() => toggleCollapsed(!collapsed)}
         />
       )}
       <div className={styles.title}>
-        <FontAwesomeIcon icon={faCat} />
-        <p>Movie Chat</p>
+        <Link to='/'><FontAwesomeIcon icon={faCat} />
+          <p>Movie Chat</p>
+        </Link>
       </div>
 
       <Menu className={styles.menu}>
@@ -76,21 +79,21 @@ const Sidebars = () => {
           <MenuItem
             className={styles.subMenuItem}
             icon={<FontAwesomeIcon className={styles.icon} icon={faUser} />}
-            component={<Link to="/dashboard" />}
+            component={<Link to="/profile" />}
           >
             Profile{" "}
           </MenuItem>
           <MenuItem
             className={styles.subMenuItem}
             icon={<FontAwesomeIcon className={styles.icon} icon={faUsers} />}
-            component={<Link to="/dashboard" />}
+            component={<Link to="/friends" />}
           >
             Friends{" "}
           </MenuItem>
           <MenuItem
             className={styles.subMenuItem}
             icon={<FontAwesomeIcon className={styles.icon} icon={faMessage} />}
-            component={<Link to="/dashboard" />}
+            component={<Link to="/chats" />}
           >
             {" "}
             Chat{" "}
@@ -98,7 +101,7 @@ const Sidebars = () => {
           <MenuItem
             className={styles.subMenuItem}
             icon={<FontAwesomeIcon className={styles.icon} icon={faCalendar} />}
-            component={<Link to="/dashboard" />}
+            component={<Link to="/events" />}
           >
             Events{" "}
           </MenuItem>
@@ -107,7 +110,7 @@ const Sidebars = () => {
             icon={
               <FontAwesomeIcon className={styles.icon} icon={faCertificate} />
             }
-            component={<Link to="/dashboard" />}
+            component={<Link to="/badges" />}
           >
             {" "}
             Badges{" "}
@@ -115,7 +118,7 @@ const Sidebars = () => {
           <MenuItem
             className={styles.subMenuItem}
             icon={<FontAwesomeIcon className={styles.icon} icon={faGear} />}
-            component={<Link to="/dashboard" />}
+            component={<Link to="/settings" />}
           >
             Settings
           </MenuItem>
@@ -131,7 +134,7 @@ const Sidebars = () => {
           icon={
             <FontAwesomeIcon className={styles.mainIcon} icon={faCalendar} />
           }
-          component={<Link to="/events" />}
+          component={<Link to="/event" />}
         >
           {" "}
           Events

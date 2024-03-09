@@ -7,7 +7,7 @@ const Badges = () => {
   return (
     <div className={styles.badgesContainer}>
        <div className={styles.title}>
-            Badges
+            Your Badges
         </div> 
         <div className={styles.badges}>
             {imageSources.map((source, index) => (

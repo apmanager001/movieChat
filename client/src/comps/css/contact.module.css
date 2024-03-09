@@ -5,15 +5,19 @@ body {
     background-color: white;
     height: 600px;
     box-sizing: border-box;
+    padding: 0 0 800px 0;
 }
 .form{
-    padding-top: 50px;
+    padding: 50px 0 0 0;
     background-color: white;
     display: flex;
     flex-direction: column;
     max-width: 500px; 
     margin: 0 auto;
     font-size: 36px
+}
+.form h1 {
+    padding-bottom: 100px;
 }
 form {
     display: flex;
@@ -42,7 +46,7 @@ form button {
     border: 0;
     padding: 5px;
     width: 150px;
-    background-color: lime;
+    background-color: lightgreen;
     border-radius: 15px;
 }
 
