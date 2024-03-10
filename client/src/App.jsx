@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import About from './comps/pages/about';
 import SignIn from './comps/pages/signIn';
 import Contact from './comps/pages/contact';
@@ -11,13 +12,28 @@ import Home from './comps/mainpage/home';
 import Footer from './comps/footer';
 import Sidebars from './sidebar';
 import styles from './sidebar.module.css';
+import Settings from './comps/features/dashboard/settings';
+import Chats from './comps/features/dashboard/chats';
+import Events from './comps/features/dashboard/events';
+import Friends from './comps/features/dashboard/friends';
+import Profile from './comps/features/dashboard/profile';
+import Badges from './comps/features/dashboard/badges';
 import './App.css';
 
 function App() {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleCollapsed = (value) => {
+    setCollapsed(value);
+  };
   return (
     <>
-      <Sidebars />
-      <div className={styles.routes}>
+      <Sidebars
+        collapsed={collapsed}
+        toggleCollapsed={toggleCollapsed}
+      />
+
+      <div className={collapsed ? styles.collapsed : styles.notCollapsed}>
         <Routes>
           <Route
             path='/'
@@ -28,7 +44,7 @@ function App() {
             element={<Movies />}
           />
           <Route
-            path='/events'
+            path='/event'
             element={<EventsPage />}
           />
           <Route
@@ -48,6 +64,30 @@ function App() {
             element={<Test />}
           />
           <Route
+            path='/settings'
+            element={<Settings />}
+          />
+          <Route
+            path='/badges'
+            element={<Badges />}
+          />
+          <Route
+            path='/chats'
+            element={<Chats />}
+          />
+          <Route
+            path='/events'
+            element={<Events />}
+          />
+          <Route
+            path='/profile'
+            element={<Profile />}
+          />
+          <Route
+            path='/friends'
+            element={<Friends />}
+          />
+          <Route
             path='/help'
             element={<Help />}
           />
@@ -56,7 +96,6 @@ function App() {
             element={<Dashboard />}
           />
         </Routes>
-
         <Footer />
       </div>
     </>

@@ -13,8 +13,9 @@ const Contact = () => {
 
     <div className={styles.contactContainer}>
       <div className={styles.form}>
+        <h1>Contact Us</h1>
         <form onSubmit={handleSubmit}>
-        
+          
           <input type="text" placeholder='Name'id="name" name="name" required />
 
           

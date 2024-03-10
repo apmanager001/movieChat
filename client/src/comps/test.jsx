@@ -1,6 +1,6 @@
 import React, {useEffect}from 'react'
 
-import styles from './css/test.css'
+import './css/test.css'
 
 const Test = () => {
 

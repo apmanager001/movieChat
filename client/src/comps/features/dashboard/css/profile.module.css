@@ -5,7 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin: 25px 100px;
+    height: 800px;
+    
 }
 
 .accountButton {
