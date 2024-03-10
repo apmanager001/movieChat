@@ -5,7 +5,7 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_TEST_BACKEND_URL,
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
