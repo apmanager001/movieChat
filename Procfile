@@ -1,2 +1,2 @@
 web: gunicorn movieChat.wsgi
-release: sh -c 'pip freeze > installations.txt && python manage.py migrate'
+release: sh -c 'pip freeze && python manage.py migrate'
