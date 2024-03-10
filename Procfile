@@ -1,2 +1,2 @@
 web: gunicorn movieChat.wsgi
-release: python manage.py migrate
+release: pipenv run python manage.py migrate
