@@ -58,9 +58,12 @@ MIDDLEWARE = [
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
+frontend_url = os.environ.get('FRONTEND_URL')
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+if frontend_url != None:
+    CORS_ALLOWED_ORIGINS.append(frontend_url)
 
 ROOT_URLCONF = 'movieChat.urls'
 
