@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,9 @@ SECRET_KEY = 'django-insecure-!u)1jlw7g91zc1f@8x^y6-3a%*0zpcoj24^k%hkv1v+5&a4@^*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://movie-chat-api-fc8e0e1d6aca.herokuapp.com/']
+ALLOWED_HOSTS = [
+    'https://movie-chat-api-fc8e0e1d6aca.herokuapp.com/'
+]
 
 
 # Application definition
@@ -81,13 +85,18 @@ WSGI_APPLICATION = 'movieChat.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+db_url = os.environ.get('DATABASE_URL')     # Provided by Heroku Config Vars
+if db_url != None:
+    DATABASES = {
+        'default': dj_database_url.config(default=db_url, conn_max_age=600, ssl_require=True)
     }
-}
+else:   # In case of local development, API uses sqlite3
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_USER_MODEL = 'api.User'
 
