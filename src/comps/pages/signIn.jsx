@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import api from '../api';
+import api from '../../api';
 import styles from '../css/signIn.module.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
