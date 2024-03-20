@@ -19,7 +19,6 @@ const Chats = () => {
           <h1> Coming Soon... This feature will be provided in the future.</h1>
         </div>
       </div>
-        
     </div>
     </>
   )
