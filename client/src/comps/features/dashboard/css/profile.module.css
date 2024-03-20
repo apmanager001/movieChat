@@ -3,9 +3,11 @@ body {
 }
 .profileContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 50px;
-    height: 800px;
+    gap: 25px;
+    height: 600px;
     
 }
 
@@ -32,6 +34,7 @@ body {
     background-color: lightgreen;
     font-size:18px;
     width: 250px;
+    cursor: pointer;
 }
 
 

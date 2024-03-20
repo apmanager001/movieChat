@@ -3,13 +3,14 @@
 } */
 .arrowIcon {
   padding-top: 50px;
+  font-size: 32px;
   color: white;
   cursor: pointer;
 }
 .title {
   padding-top: 25px;
   color: white;
-  
+  font-size: 24px;
 }
 .title a{
   color: white;

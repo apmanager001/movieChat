@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Header from "./header";
 import styles from './css/settings.module.css'
 
 const Settings = () => {
@@ -18,6 +19,8 @@ const Settings = () => {
 
 
   return (
+    <>
+    <Header />
     <div className={styles.settingsContainer}>
       <div className={styles.title}>
         Settings
@@ -33,6 +36,7 @@ const Settings = () => {
         <input type="submit" value="Delete" className={styles.deleteButton} />
       </div>
     </div>
+    </>
   )
 }
 
